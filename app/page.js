@@ -344,7 +344,7 @@ const generatePDF = async () => {
       />
       
       <header className="w-full text-center bg-gray-800 p-4 border-b border-indigo-500 flex items-center justify-center gap-2 mb-6">
-        <PlusSquare className="w-8 h-8 text-indigo-400" />
+      <FilePlus className="w-8 h-8 text-indigo-400" />
         <h1 className="text-3xl font-bold text-indigo-300">pdf.JesseJesse.com</h1>
       </header>
 
