@@ -8,6 +8,7 @@ import {
   Loader2,
   Download,
   Printer,
+  FilePlus,
   Share2,
   X,
 } from 'lucide-react'
