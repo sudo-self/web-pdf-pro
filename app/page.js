@@ -160,7 +160,7 @@ export default function Home() {
       <Toaster position="top-center" reverseOrder={false} />
       <header className="w-full text-center bg-gray-800 p-4 border-b border-indigo-500 flex items-center justify-center gap-2 mb-6">
         <PlusSquare className="w-8 h-8 text-indigo-400" />
-        <h1 className="text-3xl font-bold text-indigo-300">web PDF pro</h1>
+        <h1 className="text-3xl font-bold text-indigo-300">pdf.JesseJesse.com</h1>
       </header>
 
       <main className="flex-1 w-full overflow-y-auto px-4 md:px-6 pb-32">
@@ -246,7 +246,7 @@ export default function Home() {
               onDrop={onDrop}
               className="border-2 border-dashed border-indigo-500 rounded p-4 text-center cursor-pointer"
             >
-              Drag & Drop or Click to Select
+              drop images here to create PDF
             </div>
             <input
               type="file"
