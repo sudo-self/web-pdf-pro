@@ -13,7 +13,7 @@ import {
 } from 'lucide-react'
 import toast, { Toaster } from 'react-hot-toast'
 
-// Custom hook for debounce
+// hook debounce
 function useDebounce(value, delay) {
   const [debouncedValue, setDebouncedValue] = useState(value)
 
@@ -68,12 +68,12 @@ export default function Home() {
 
   const debouncedUrl = useDebounce(url, 500)
 
-  // Validate URL on debounced change
+
   useEffect(() => {
     validateUrl(debouncedUrl)
   }, [debouncedUrl])
 
-  // Progress indicator simulation
+
   useEffect(() => {
     let interval
     if (isLoading) {
@@ -132,7 +132,7 @@ export default function Home() {
         return
       }
       
-      // Check file size (max 10MB)
+   
       if (file.size > 10 * 1024 * 1024) {
         toast.error(`Image too large: ${file.name} (max 10MB)`)
         return
@@ -350,7 +350,7 @@ const generatePDF = async () => {
 
       <main className="flex-1 w-full overflow-y-auto px-4 md:px-6 pb-32">
         <div className="w-full max-w-2xl space-y-4 mx-auto">
-          {/* URL & Format */}
+      
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium mb-1">Website URL</label>
@@ -380,7 +380,7 @@ const generatePDF = async () => {
             </div>
           </div>
 
-          {/* Wait & Orientation */}
+    
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium mb-1">Wait Time (ms)</label>
@@ -407,7 +407,7 @@ const generatePDF = async () => {
             </div>
           </div>
 
-          {/* Options */}
+     
           <div className="flex flex-wrap items-center gap-4 p-4 bg-gray-800 rounded-lg">
             <label className="flex items-center space-x-2">
               <input
@@ -429,7 +429,6 @@ const generatePDF = async () => {
             </label>
           </div>
 
-          {/* Image Upload */}
           <div>
             <label className="block text-sm font-medium mb-1">
               Upload Images {uploadedImages.length > 0 && `(${uploadedImages.length})`}
@@ -441,7 +440,7 @@ const generatePDF = async () => {
               className="border-2 border-dashed border-indigo-500 rounded p-6 text-center cursor-pointer hover:bg-gray-800 transition-colors"
             >
               <p className="text-indigo-300 font-medium">Drop images here or click to upload</p>
-              <p className="text-gray-400 text-sm mt-1">for images only remove the website url before creating PDF</p>
+              <p className="text-gray-400 text-sm mt-1">supported formats jpeg, png, webp, (10mb max)</p>
             </div>
             <input
               type="file"
@@ -482,7 +481,7 @@ const generatePDF = async () => {
             )}
           </div>
 
-          {/* Progress Bar */}
+       
           {isLoading && (
             <div className="w-full bg-gray-700 rounded-full h-2">
               <div 
@@ -492,7 +491,7 @@ const generatePDF = async () => {
             </div>
           )}
 
-          {/* Action Buttons */}
+    
           <div className="flex gap-3">
             <button
               onClick={generatePDF}
@@ -528,7 +527,7 @@ const generatePDF = async () => {
             {status}
           </p>
 
-          {/* Preview + 3D Viewer */}
+     
           {pdfUrl && (
             <div className="w-full max-w-6xl mt-8 flex flex-col items-center">
               <div className="flex justify-between items-center w-full mb-2">
@@ -551,7 +550,7 @@ const generatePDF = async () => {
             </div>
           )}
 
-          {/* PDF Actions */}
+  
           {pdfUrl && (
             <div className="flex flex-wrap gap-3 mt-4">
               <a
@@ -584,7 +583,7 @@ const generatePDF = async () => {
         </div>
       </main>
 
-      {/* Footer */}
+
       <footer className="w-full bg-gray-900 text-gray-400 py-4 text-center border-t border-gray-800 mt-auto">
         <a
           href="https://pdf.JesseJesse.com"
