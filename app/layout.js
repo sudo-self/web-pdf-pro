@@ -1,4 +1,4 @@
-// app/layout.js or app/layout.tsx
+// app/layout.js
 
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -14,19 +14,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Web PDF",
+  title: "pdf.JesseJesse.com",
   description: "Convert websites into downloadable PDFs with preview and sharing.",
-  metadataBase: new URL("https://web-pdf-pro.vercel.app"),
+  metadataBase: new URL("https://pdf.JesseJesse.com"),
   openGraph: {
     type: "website",
-    url: "https://web-pdf-pro.vercel.app",
-    title: "web PDF",
+    url: "https://pdf.JesseJesse.com",
+    title: "pdf.JesseJesse.com",
     description: "Convert websites into downloadable PDFs with preview and sharing.",
     images: ["/pdf-og.png"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "web PDF",
+    title: "pdf.JesseJesse.com",
     description: "Convert websites into downloadable PDFs with preview and sharing.",
     images: ["/pdf-og.png"],
   },
@@ -44,7 +44,7 @@ export default function RootLayout({ children }) {
             <link rel="icon" href="/favicon.ico" sizes="any" />
             <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
             <link rel="manifest" href="/manifest.json" />
-            <meta property="og:site_name" content="web-pdf-pro" />
+            <meta property="og:site_name" content="pdf.JesseJesse.com" />
           </head>
 
       <body
