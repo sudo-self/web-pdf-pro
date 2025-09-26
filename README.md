@@ -23,4 +23,9 @@
 
 <img width="1512" height="867" alt="Screenshot 2025-09-25 at 19 04 24" src="https://github.com/user-attachments/assets/5d87d50d-afe0-4ec5-ac7d-e43874a64d55" />
 
-
+```
+ curl -X POST "https://snapshot.jessejesse.workers.dev" \
+  -H "Content-Type: application/json" \
+  --data '{"url":"https://example.com"}' \
+  --output example.pdf
+```
