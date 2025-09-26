@@ -20,16 +20,7 @@
 
 - 🖨️ Print directly from browser
 
-- 📤 Share via Web Share API (when supported)
 
-- 🧠 How It Works
+<img width="1512" height="867" alt="Screenshot 2025-09-25 at 19 04 24" src="https://github.com/user-attachments/assets/5d87d50d-afe0-4ec5-ac7d-e43874a64d55" />
 
-### This app sends your input to a serverless PDF rendering API which uses a headless browser to:
 
-- Load the URL
-
-- Wait for the timeout (e.g. 2000ms)
-
-- Render the page as a PDF using specified options
-
-- Return the PDF as a blob for preview, download, print, or share
