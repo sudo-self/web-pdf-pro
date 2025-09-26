@@ -430,7 +430,7 @@ export default function Home() {
               className="border-2 border-dashed border-indigo-500 rounded p-6 text-center cursor-pointer hover:bg-gray-800 transition-colors"
             >
               <p className="text-indigo-300 font-medium">Drop images here or click to upload</p>
-              <p className="text-gray-400 text-sm mt-1">Supports JPEG, PNG, WebP (max 10MB each)</p>
+              <p className="text-gray-400 text-sm mt-1">for images only remove the website url before creating PDF</p>
             </div>
             <input
               type="file"
