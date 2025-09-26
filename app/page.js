@@ -314,18 +314,19 @@ const generatePDF = async () => {
     }
   }
 
-  const clearAll = () => {
-    setUrl('https://example.com/')
-    setUploadedImages([])
-    setUrlError('')
-    setStatus('')
-    if (pdfUrl) {
-      URL.revokeObjectURL(pdfUrl)
-      setPdfUrl(null)
-      setPdfBlob(null)
-    }
-    toast.success('Form cleared!')
+ const clearAll = () => {
+  setUrl('') 
+  setUploadedImages([])
+  setUrlError('')
+  setStatus('')
+  if (pdfUrl) {
+    URL.revokeObjectURL(pdfUrl)
+    setPdfUrl(null)
+    setPdfBlob(null)
   }
+  toast.success('Form cleared!')
+}
+
 
   return (
     <div className="bg-gray-950 text-white min-h-screen flex flex-col">
