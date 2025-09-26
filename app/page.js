@@ -333,6 +333,18 @@ export default function Home() {
           )}
         </div>
       </main>
+          {/* Footer */}
+<footer className="w-full bg-gray-900 text-gray-400 py-4 text-center border-t border-gray-800 mt-auto">
+  <a
+    href="https://pdf.JesseJesse.com"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="hover:text-indigo-400 transition"
+  >
+    pdf.JesseJesse.com
+  </a>
+</footer>
+
     </div>
   )
 }
