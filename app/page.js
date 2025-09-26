@@ -157,87 +157,97 @@ export default function Home() {
     e.preventDefault()
   }
 
-  const generatePDF = async () => {
-    if (url && !isValidUrl(url)) {
-      setStatus('Invalid URL. Please enter a valid one.')
-      setStatusColor('red')
-      toast.error('Please enter a valid URL')
-      return
-    }
+const generatePDF = async () => {
 
-    if (!url && uploadedImages.length === 0) {
-      setStatus('Please provide a URL or upload at least one image.')
-      setStatusColor('red')
-      toast.error('Please provide a URL or upload images')
-      return
-    }
-
-    if (urlError) {
-      setStatus('Please fix URL errors before generating PDF.')
-      setStatusColor('red')
-      return
-    }
-
-    if (pdfUrl) {
-      URL.revokeObjectURL(pdfUrl)
-      setPdfUrl(null)
-      setPdfBlob(null)
-    }
-
-    setIsLoading(true)
-    setStatus('')
-    setPdfInfo('')
-    setProgress(0)
-
-    try {
-      const res = await fetch('https://snapshot.jessejesse.workers.dev', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          url: url || '',
-          waitForTimeout: parseInt(String(waitTime), 10),
-          pdfOptions: {
-            format,
-            landscape: orientation === 'landscape',
-            printBackground,
-            displayHeaderFooter,
-            margin: { top: '1cm', right: '1cm', bottom: '1cm', left: '1cm' },
-          },
-          images: uploadedImages,
-        }),
-      })
-
-      if (!res.ok) {
-        const errorText = await res.text()
-        if (res.status === 429) throw new Error('Rate limit exceeded. Please try again later.')
-        if (res.status === 502) throw new Error('Service temporarily unavailable.')
-        if (res.status === 413) throw new Error('File too large. Please reduce image sizes.')
-        throw new Error(errorText || `HTTP Error ${res.status}`)
-      }
-      
-      const blob = await res.blob()
-      
-      if (blob.size === 0) {
-        throw new Error('Empty PDF generated - please try again')
-      }
-
-      setProgress(100)
-      const newUrl = URL.createObjectURL(blob)
-      setPdfUrl(newUrl)
-      setPdfBlob(blob)
-      setPdfInfo(`${format} | ${orientation} | ${(blob.size / 1024).toFixed(1)} KB | ${new Date().toLocaleDateString()}`)
-      setStatus('PDF created successfully!')
-      setStatusColor('green')
-      toast.success('PDF generated successfully!')
-    } catch (err) {
-      console.error('PDF generation error:', err)
-      setStatus(`Error: ${err.message}`)
-      setStatusColor('red')
-      toast.error(`Failed to generate PDF: ${err.message}`)
-    } finally {
-      setIsLoading(false)
-    }
+  if (url && url !== 'https://example.com/' && !isValidUrl(url)) {
+    setStatus('Invalid URL. Please enter a valid one.')
+    setStatusColor('red')
+    toast.error('Please enter a valid URL')
+    return
   }
+
+ 
+  if ((!url || url === 'https://example.com/') && uploadedImages.length === 0) {
+    setStatus('Please provide a URL or upload at least one image.')
+    setStatusColor('red')
+    toast.error('Please provide a URL or upload images')
+    return
+  }
+
+  if (urlError) {
+    setStatus('Please fix URL errors before generating PDF.')
+    setStatusColor('red')
+    return
+  }
+
+
+  if (pdfUrl) {
+    URL.revokeObjectURL(pdfUrl)
+    setPdfUrl(null)
+    setPdfBlob(null)
+  }
+
+  setIsLoading(true)
+  setStatus('')
+  setPdfInfo('')
+  setProgress(0)
+
+  try {
+ 
+    const payload = {
+      waitForTimeout: parseInt(String(waitTime), 10),
+      pdfOptions: {
+        format,
+        landscape: orientation === 'landscape',
+        printBackground,
+        displayHeaderFooter,
+        margin: { top: '1cm', right: '1cm', bottom: '1cm', left: '1cm' },
+      },
+      images: uploadedImages,
+    }
+
+    if (url && url !== 'https://example.com/') {
+      payload.url = url
+    }
+
+    const res = await fetch('https://snapshot.jessejesse.workers.dev', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+
+    if (!res.ok) {
+      const errorText = await res.text()
+      if (res.status === 429) throw new Error('Rate limit exceeded. Please try again later.')
+      if (res.status === 502) throw new Error('Service temporarily unavailable.')
+      if (res.status === 413) throw new Error('File too large. Please reduce image sizes.')
+      throw new Error(errorText || `HTTP Error ${res.status}`)
+    }
+
+    const blob = await res.blob()
+
+    if (blob.size === 0) {
+      throw new Error('Empty PDF generated - please try again')
+    }
+
+    setProgress(100)
+    const newUrl = URL.createObjectURL(blob)
+    setPdfUrl(newUrl)
+    setPdfBlob(blob)
+    setPdfInfo(`${format} | ${orientation} | ${(blob.size / 1024).toFixed(1)} KB | ${new Date().toLocaleDateString()}`)
+    setStatus('PDF created successfully!')
+    setStatusColor('green')
+    toast.success('PDF generated successfully!')
+  } catch (err) {
+    console.error('PDF generation error:', err)
+    setStatus(`Error: ${err.message}`)
+    setStatusColor('red')
+    toast.error(`Failed to generate PDF: ${err.message}`)
+  } finally {
+    setIsLoading(false)
+  }
+}
+
 
   const printPDF = async () => {
     if (!pdfBlob) {
